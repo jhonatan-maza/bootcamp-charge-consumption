@@ -2,10 +2,13 @@ package com.nttdata.bootcamp.service;
 
 import com.nttdata.bootcamp.entity.ChargeConsumption;
 import com.nttdata.bootcamp.repository.ChargeConsumptionRepository;
+import com.nttdata.bootcamp.util.Constant;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
+
+import java.util.Date;
 
 //Service implementation
 @Service
@@ -38,10 +41,10 @@ public class ChargeConsumptionServiceImpl implements ChargeConsumptionService {
 
     @Override
     public Mono<ChargeConsumption> saveChargeConsumption(ChargeConsumption dataChargeConsumption) {
-        Mono<ChargeConsumption> loadBalanceMono = findByNumber(dataChargeConsumption.getChargeNumber())
-                .flatMap(__ -> Mono.<ChargeConsumption>error(new Error("This charge consumption  number " + dataChargeConsumption.getChargeNumber() + "exists")))
+        Mono<ChargeConsumption> chargeConsumptionMono = findByNumber(dataChargeConsumption.getDni())
+                .flatMap(__ -> Mono.<ChargeConsumption>error(new Error("This charge number" + dataChargeConsumption.getDni() + " exists")))
                 .switchIfEmpty(chargeConsumptionRepository.save(dataChargeConsumption));
-        return loadBalanceMono;
+        return chargeConsumptionMono;
 
 
     }
