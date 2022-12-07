@@ -1,6 +1,6 @@
 spring:
   application:
-    name: bootcamp-load-balance
+    name: bootcamp-charge-consumption
   config:
     import: "optional:configserver:http://localhost:7000"
   cloud:

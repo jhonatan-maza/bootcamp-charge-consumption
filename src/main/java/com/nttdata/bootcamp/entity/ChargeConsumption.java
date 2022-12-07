@@ -16,8 +16,8 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-@Document(collection = "load-balance")
-public class LoadBalance {
+@Document(collection = "charge-consumption")
+public class ChargeConsumption {
 
     @Id
     private String id;
@@ -26,7 +26,7 @@ public class LoadBalance {
     private String accountNumber;
     private String typeAccount;
 
-    private String loadBalanceNumber;
+    private String chargeNumber;
     private Double amount;
     private Double commission;
     private String status;
